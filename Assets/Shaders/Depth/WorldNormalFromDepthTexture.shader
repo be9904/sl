@@ -2,6 +2,7 @@ Shader "WorldNormalFromDepthTexture"
 {
     Properties {
         [KeywordEnum(3 Tap, 4 Tap, Improved, Accurate)] _ReconstructionMethod ("Normal Reconstruction Method", Float) = 0
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull("Cull", Float) = 2
     }
 
     SubShader
@@ -11,7 +12,7 @@ Shader "WorldNormalFromDepthTexture"
         
         Pass
         {
-            Cull Off
+            Cull [_Cull]
             ZWrite Off
 
             HLSLPROGRAM
@@ -236,6 +237,10 @@ Shader "WorldNormalFromDepthTexture"
                 half3 WorldNormal = mul((float3x3)unity_MatrixInvV, viewNormal);
 
                 half3 LinearWorldNormal = GammaToLinearSpace(WorldNormal.xyz * 0.5 + 0.5);
+
+                // snow
+                // if(dot(LinearWorldNormal, half3(0, 1, 0)) < 0.9) discard;
+                // return half4(1, 1, 1, 1);
                 
                 // alternative that should work when using this for post processing
                 // we have to invert the view normal z because Unity's view space z is flipped

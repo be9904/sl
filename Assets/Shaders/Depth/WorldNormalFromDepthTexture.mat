@@ -23,6 +23,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _Cull: 0
     - _ReconstructionMethod: 1
     m_Colors: []
   m_BuildTextureStacks: []
