@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6404981808087903273
+--- !u!114 &-3165689132587721212
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MM_ForceField
-  m_Shader: {fileID: -6465566751694194690, guid: 01e8578d6f5095b45bdb5e4e1c062921, type: 3}
+  m_Name: MM_Intersection
+  m_Shader: {fileID: -6465566751694194690, guid: eaeddb900dd51614983fdf1fa01c4f24, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -51,14 +51,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fill: 0.001
-    - _IntersectionOffset: 0.769
-    - _Offset: 0.647
+    - _Fill: 0
+    - _IntersectionOffset: 0.75
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RimPower: 7.41
-    - _ScrollSpeed: 0.1
+    - _RimPower: 1
+    - _ScrollSpeed: 0.105
+    - _isScrollX: 0
     m_Colors:
-    - _BaseColor: {r: 1.286657, g: 8.47419, b: 8.0748825, a: 0}
+    - _BaseColor: {r: 0.4392157, g: 2.94902, b: 2.807843, a: 0}
     - _Tiling: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
