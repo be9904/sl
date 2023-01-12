@@ -10,7 +10,7 @@ Material:
   m_Name: WorldNormalFromDepthTexture
   m_Shader: {fileID: 4800000, guid: 26c54176ee422034e85f5f047f6a1ae3, type: 3}
   m_ValidKeywords:
-  - _RECONSTRUCTIONMETHOD_3_TAP
+  - _RECONSTRUCTIONMETHOD_4_TAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -23,6 +23,6 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _ReconstructionMethod: 0
+    - _ReconstructionMethod: 1
     m_Colors: []
   m_BuildTextureStacks: []
