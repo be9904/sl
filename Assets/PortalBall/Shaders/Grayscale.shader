@@ -3,6 +3,7 @@ Shader "Grayscale"
     Properties {
         [KeywordEnum(3 Tap, 4 Tap, Improved, Accurate)] _ReconstructionMethod ("Normal Reconstruction Method", Float) = 0
         [Enum(UnityEngine.Rendering.CullMode)] _Cull("Cull", Float) = 2
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
         
         _VertexOffset ("Vertex Offset", Float) = 0
     }
@@ -16,7 +17,7 @@ Shader "Grayscale"
         {
             Cull [_Cull]
             ZWrite Off
-            ZTest Greater
+            ZTest [_ZTest]
 
             HLSLPROGRAM
             #pragma vertex vert

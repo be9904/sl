@@ -7,9 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShowDst
-  m_Shader: {fileID: 4800000, guid: e0849a8c50ac28644a36ee66282c403f, type: 3}
-  m_ValidKeywords: []
+  m_Name: Grayscale_Quad
+  m_Shader: {fileID: 4800000, guid: 4e1926a28eeb46e41b41df6879b94a9f, type: 3}
+  m_ValidKeywords:
+  - _RECONSTRUCTIONMETHOD_3_TAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -21,6 +22,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _Cull: 0
+    - _ReconstructionMethod: 0
+    - _VertexOffset: 0
+    - _ZTest: 4
     m_Colors: []
   m_BuildTextureStacks: []

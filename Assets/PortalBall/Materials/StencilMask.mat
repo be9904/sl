@@ -7,15 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grayscale
-  m_Shader: {fileID: 4800000, guid: 4e1926a28eeb46e41b41df6879b94a9f, type: 3}
-  m_ValidKeywords:
-  - _RECONSTRUCTIONMETHOD_3_TAP
+  m_Name: StencilMask
+  m_Shader: {fileID: 4800000, guid: 545f4eb7c23f8114caad5bb7ad45d0b1, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -23,9 +22,6 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Cull: 0
-    - _ReconstructionMethod: 0
-    - _VertexOffset: 0
-    - _ZTest: 5
+    - _StencilID: 1
     m_Colors: []
   m_BuildTextureStacks: []
