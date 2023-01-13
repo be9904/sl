@@ -21,6 +21,7 @@ Shader "WorldNormalFromDepthTexture"
 
             #pragma shader_feature _RECONSTRUCTIONMETHOD_3_TAP _RECONSTRUCTIONMETHOD_4_TAP _RECONSTRUCTIONMETHOD_IMPROVED _RECONSTRUCTIONMETHOD_ACCURATE
             
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"
 
@@ -241,6 +242,12 @@ Shader "WorldNormalFromDepthTexture"
                 // snow
                 // if(dot(LinearWorldNormal, half3(0, 1, 0)) < 0.9) discard;
                 // return half4(1, 1, 1, 1);
+
+                // black and white
+                // return dot(LinearWorldNormal, half3(0, 1, 0)) > 0.9 ? half4(1,1,1,1) : 0;
+
+                // lighting
+                // return dot(LinearWorldNormal, GetMainLight().direction);
                 
                 // alternative that should work when using this for post processing
                 // we have to invert the view normal z because Unity's view space z is flipped
