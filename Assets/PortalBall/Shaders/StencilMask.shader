@@ -13,13 +13,13 @@ Shader "StencilMask"
             Blend Zero One
             ZWrite Off
             
-            Stencil
-            {
-                Ref [_StencilID]
-                Comp Always
-                Pass Replace
-                Fail Keep
-            }
+//            Stencil
+//            {
+//                Ref [_StencilID]
+//                Comp Always
+//                Pass Replace
+//                Fail Keep
+//            }
         }
     }
 }

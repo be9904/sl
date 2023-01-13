@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 76241384743540581}
   - component: {fileID: 5560791318195390125}
   - component: {fileID: 2642595247516748684}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PortalBall
-  m_TagString: Untagged
+  m_TagString: Grabbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 76241384743540580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.8, y: 1.29, z: 1.26}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.01, y: 0.010000001, z: 0.010000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,8 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe9b4e8270a1ad4cbffdc1bb60c5c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: 100
-  expandSpeed: 10
+  maxScale: 200
+  expandSpeed: 30
+  _timeOutTime: 7
 --- !u!54 &2642595247516748684
 Rigidbody:
   m_ObjectHideFlags: 0

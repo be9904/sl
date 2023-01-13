@@ -8,10 +8,12 @@ public class PortalBall : MonoBehaviour
     public float maxScale;
     public float expandSpeed = 1;
 
-    private float _dropTime;
     private Rigidbody _ballRigidbody;
     private SphereCollider _sphereCollider;
     private bool _isDropped;
+    private float _dropTime;
+    private bool _timeOut;
+    [SerializeField] private float _timeOutTime;
 
     private bool isFirstTarget;
     
@@ -24,12 +26,23 @@ public class PortalBall : MonoBehaviour
 
     void Update()
     {
-        if(_isDropped) UpdateScale();
+        if(_isDropped) ExpandBall();
+
+        if (_timeOut) ShrinkBall();
+
+        if (Time.time - _dropTime > _timeOutTime) _timeOut = true;
     }
 
-    void UpdateScale()
+    void ExpandBall()
     {
-        transform.localScale = Vector3.one * (maxScale * Mathf.InverseLerp(0, maxScale, (Time.time - _dropTime) * expandSpeed));
+        transform.localScale = 
+            Vector3.one * (maxScale * Mathf.InverseLerp(0, maxScale, (Time.time - _dropTime) * expandSpeed));
+    }
+
+    void ShrinkBall()
+    {
+        transform.localScale = 
+            Vector3.one * (maxScale * Mathf.InverseLerp(maxScale, 0, (Time.time - _dropTime - _timeOutTime) * expandSpeed));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,16 +60,10 @@ public class PortalBall : MonoBehaviour
             if (!isFirstTarget)
             {
                 isFirstTarget = true;
-                // Debug.Log("First Target: " + other.gameObject.name);
             }
             else
             {
-                MeshRenderer renderer = other.gameObject.GetComponent<MeshRenderer>();
-                if (renderer)
-                {
-                    // Debug.Log(other.gameObject.name + " not rendering");
-                    renderer.enabled = false;
-                }
+                other.gameObject.SetActive(false);
             }
         }
     }
