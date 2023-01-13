@@ -1,4 +1,4 @@
-Shader "WorldNormalFromDepthTexture"
+Shader "Grayscale"
 {
     Properties {
         [KeywordEnum(3 Tap, 4 Tap, Improved, Accurate)] _ReconstructionMethod ("Normal Reconstruction Method", Float) = 0
@@ -16,6 +16,7 @@ Shader "WorldNormalFromDepthTexture"
         {
             Cull [_Cull]
             ZWrite Off
+            ZTest Greater
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -250,7 +251,7 @@ Shader "WorldNormalFromDepthTexture"
                 // return dot(LinearWorldNormal, half3(0, 1, 0)) > 0.9 ? half4(1,1,1,1) : 0;
                 
                 // lighting
-                // return dot(LinearWorldNormal, GetMainLight().direction);
+                return dot(LinearWorldNormal, GetMainLight().direction);
                 
                 // alternative that should work when using this for post processing
                 // we have to invert the view normal z because Unity's view space z is flipped
