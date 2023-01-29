@@ -11,12 +11,11 @@ Shader "Grayscale"
 
     SubShader
     {
-        Tags {"RenderPipeline"="UniversalPipeline"}
+        Tags {"RenderType"="Transparent" "Queue"= "Transparent" "RenderPipeline"="UniversalPipeline"}
         
         Pass
         {
-            Tags {"LightMode"="SRPDefaultUnlit"}
-            Cull Front
+            Cull [_Cull]
             ZWrite Off
             ZTest [_ZTest]
 
@@ -269,7 +268,7 @@ Shader "Grayscale"
             ENDHLSL
         }
         
-        Pass
+        /*Pass
         {
             Tags {"LightMode"="UniversalForward"}
             Cull Front
@@ -314,6 +313,6 @@ Shader "Grayscale"
             }
             
             ENDHLSL
-        }
+        }*/
     }
 }

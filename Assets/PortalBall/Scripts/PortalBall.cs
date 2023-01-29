@@ -21,11 +21,11 @@ public class PortalBall : MonoBehaviour
     [Header("VFX")] 
     public VisualEffect blackHole;
     public float delay;
+    public MeshRenderer shell;
     
     // Start is called before the first frame update
     void Start()
     {
-        // blackHole.Play();
         _ballRigidbody = GetComponent<Rigidbody>();
         _sphereCollider = GetComponent<SphereCollider>();
     }
@@ -66,6 +66,7 @@ public class PortalBall : MonoBehaviour
         _ballRigidbody.isKinematic = true;
         _sphereCollider.isTrigger = true;
         _isDropped = true;
+        shell.enabled = false;
         blackHole.transform.position = transform.position;
         blackHole.Play();
     }
