@@ -12,7 +12,7 @@ public class PortalBall : MonoBehaviour
     private Rigidbody _ballRigidbody;
     private SphereCollider _sphereCollider;
     private bool _isDropped;
-    private float _dropTime;
+    private float _dropTime; 
     private bool _timeOut;
     [SerializeField] private float _timeOutTime;
 
@@ -56,6 +56,8 @@ public class PortalBall : MonoBehaviour
     {
         transform.localScale = 
             Vector3.one * (maxScale * Mathf.InverseLerp(maxScale, 0, (Time.time - _dropTime - _timeOutTime) * expandSpeed));
+        if(transform.localScale.magnitude < 0.01)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -80,6 +82,15 @@ public class PortalBall : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Target"))
+        {
+            if(!other.gameObject.activeSelf)
+                other.gameObject.SetActive(true);
         }
     }
 }

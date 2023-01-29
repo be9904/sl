@@ -251,6 +251,8 @@ Shader "Grayscale"
 
                 // black and white
                 // return dot(LinearWorldNormal, half3(0, 1, 0)) > 0.9 ? half4(1,1,1,1) : 0;
+
+                // return half4(viewSpacePosAtScreenUV(i.pos.xy), 1);
                 
                 // lighting
                 return dot(LinearWorldNormal, GetMainLight().direction);
