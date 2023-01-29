@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PortalBall : MonoBehaviour
 {
@@ -16,21 +17,33 @@ public class PortalBall : MonoBehaviour
     [SerializeField] private float _timeOutTime;
 
     private bool isFirstTarget;
+
+    [Header("VFX")] 
+    public VisualEffect blackHole;
+    public float delay;
     
     // Start is called before the first frame update
     void Start()
     {
+        // blackHole.Play();
         _ballRigidbody = GetComponent<Rigidbody>();
         _sphereCollider = GetComponent<SphereCollider>();
     }
 
     void Update()
     {
-        if(_isDropped) ExpandBall();
+        if (_isDropped) StartCoroutine(StartExpandCoroutine());
 
         if (_timeOut) ShrinkBall();
 
         if (Time.time - _dropTime > _timeOutTime) _timeOut = true;
+    }
+
+    IEnumerator StartExpandCoroutine()
+    {
+        yield return new WaitForSeconds(delay);
+        
+        ExpandBall();
     }
 
     void ExpandBall()
@@ -47,10 +60,12 @@ public class PortalBall : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        _dropTime = Time.time;
+        _dropTime = Time.time + delay;
         _ballRigidbody.isKinematic = true;
         _sphereCollider.isTrigger = true;
         _isDropped = true;
+        blackHole.transform.position = transform.position;
+        blackHole.Play();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -6,16 +6,17 @@ Shader "Grayscale"
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 0
         
         _VertexOffset ("Vertex Offset", Float) = 0
+        _BackgroundTex ("Background Texture", 2D) = "white" {}
     }
 
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
-        LOD 100
+        Tags {"RenderPipeline"="UniversalPipeline"}
         
         Pass
         {
-            Cull [_Cull]
+            Tags {"LightMode"="SRPDefaultUnlit"}
+            Cull Front
             ZWrite Off
             ZTest [_ZTest]
 
@@ -263,6 +264,53 @@ Shader "Grayscale"
                 // visualize normal (assumes you're using linear space rendering)
                 return half4(LinearWorldNormal, 1);
             }
+            ENDHLSL
+        }
+        
+        Pass
+        {
+            Tags {"LightMode"="UniversalForward"}
+            Cull Front
+            ZTest Less
+            
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
+            struct Attributes
+            {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float4 cpos : SV_POSITION;
+                float3 normal : NORMAL;
+                // float2 uv : TEXCOORD0;
+            };
+
+            Texture2D _BackgroundTex;
+            SamplerState sampler_BackgroundTex;
+            float4 _BackgroundTex_ST;
+
+            v2f vert(Attributes v)
+            {
+                v2f o;
+                o.normal = TransformObjectToWorldNormal(v.normal);
+                o.cpos = TransformObjectToHClip(v.vertex);
+                // o.uv = v.uv * _BackgroundTex_ST.xy + _BackgroundTex_ST.zw;
+                return o;
+            }
+
+            half4 frag(v2f i) : SV_Target
+            {
+                return half4(0.1f, 0.1f, 0.1f, 1);
+            }
+            
             ENDHLSL
         }
     }
